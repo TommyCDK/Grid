@@ -161,7 +161,7 @@ class GenMap():
         self.BlockPerChunk = BlockPerChunk
         BlockPerChunk = int(BlockPerChunk)
         self.ChunkRange = ChunkRange
-    def genmap(self, MapID):
+    def gen(self, MapID):
         self.MapID = MapID
         self.MapPath = "Data\\Game\\Maps\\" + str(MapID) + ".txt"
         BlockPerChunk = int(self.BlockPerChunk)
@@ -278,9 +278,6 @@ class loadmap():
                 if not pygame.mouse.get_pressed()[0]:
                     self.ClickTile = False
         pygame.display.flip()
-    def UpdateMapWhileChange(self):
-        pass
-        
 
     
 

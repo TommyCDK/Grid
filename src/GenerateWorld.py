@@ -42,19 +42,19 @@ def fcc(): #FullScreen Toggle
 
         screen = pygame.display.set_mode((1000,720))
 
+Map = D.loadmap("Map1",Screen)   
+Map.LoadTile()  
 
-
-                    
+a = D.GenMap(10,10)
+a.gen("Map1")                   
 def RunModule():
     
     if Sences.s1: Sences.sc1()
     pass
-Map = D.loadmap("Map1",Screen)   
-Map.LoadTile()
+
 player = D.Player(100,50,200,200)
 Screen.fill(ScreenFill)
 while run:
-    
     Screen.fill(ScreenFill)
     Map.UpdateMoving()
     Map.DrawTile()
