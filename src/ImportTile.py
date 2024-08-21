@@ -22,35 +22,35 @@ class ImportImages():
         self.Surface = Surface
         Surface.blit(self.ID, (self.PosX, self.PosY))
 
-dirt = ImportImages("dirt","Tiles\\Tiles\\Dirt.png",50,50)
+dirt = ImportImages("dirt","Data\\Tiles\\Tiles\\Dirt.png",100,70)
 dirt.Install()
 
-grass = ImportImages("grass","Tiles\\Tiles\\Grass.png",50,50)
+grass = ImportImages("grass","Data\\Tiles\\Tiles\\Grass.png",100,70)
 grass.Install()
 
-sand = ImportImages("sand","Tiles\\Tiles\\Sand.png",50,50)
+sand = ImportImages("sand","Data\\Tiles\\Tiles\\Sand.png",100,70)
 sand.Install()
 
-water = ImportImages("water","Tiles\\Tiles\\Water.png",50,50)
+water = ImportImages("water","Data\\Tiles\\Tiles\\Water.png",100,70)
 water.Install()
 
-dirtmini = ImportImages("dirt","Tiles\\Tiles\\Dirt.png",1,1)
+dirtmini = ImportImages("dirt","Data\\Tiles\\Tiles\\Dirt.png",1,1)
 dirtmini.Install()
 
-grassmini = ImportImages("grass","Tiles\\Tiles\\Grass.png",1,1)
+grassmini = ImportImages("grass","Data\\Tiles\\Tiles\\Grass.png",1,1)
 grassmini.Install()
 
-sandmini = ImportImages("sand","Tiles\\Tiles\\Sand.png",1,1)
+sandmini = ImportImages("sand","Data\\Tiles\\Tiles\\Sand.png",1,1)
 sandmini.Install()
 
-watermini = ImportImages("water","Tiles\\Tiles\\Water.png",1,1)
+watermini = ImportImages("water","Data\\Tiles\\Tiles\\Water.png",1,1)
 watermini.Install()
 
-ExitIMG = ImportImages("ExitIMG", "Tiles\\BlockObj\\Exit.png",150,50)
+ExitIMG = ImportImages("ExitIMG", "Data\\Tiles\\BlockObj\\Exit.png",150,50)
 ExitIMG.Install()
 
-StartIMG = ImportImages("StartIMG", "Tiles\\BlockObj\\Start.png",150,50)
+StartIMG = ImportImages("StartIMG", "Data\\Tiles\\BlockObj\\Start.png",150,50)
 StartIMG.Install()
 
-MenuIMG = ImportImages("MenuIMG", "Tiles\\BlockObj\\Menu.png",150,50)
+MenuIMG = ImportImages("MenuIMG", "Data\\Tiles\\BlockObj\\Menu.png",150,50)
 MenuIMG.Install()

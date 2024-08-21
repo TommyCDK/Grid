@@ -217,7 +217,7 @@ class loadmap():
                         tile = ImportTile.water      
                     else:
                         tile = ImportTile.dirt
-                    self.tileListX.insert(countx,dict(Name=tile.Name,TileName=tile,Surface=self.Screen,PosX=self.start*50,PosY=self.starty*50,BlockPosX=self.start,BlockPosY=self.starty))
+                    self.tileListX.insert(countx,dict(Name=tile.Name,TileName=tile,Surface=self.Screen,PosX=self.start*tile.ScaleX,PosY=self.starty*tile.ScaleY,BlockPosX=self.start,BlockPosY=self.starty))
                     countx += 1
                     self.start += 1
                 self.tileListY.insert(county,self.tileListX)
@@ -228,7 +228,7 @@ class loadmap():
     def UpdateMoving(self):
         k = pygame.key.get_pressed()
         mx, my = pygame.mouse.get_pos()
-        if k[pygame.K_d] or mx > 480:
+        if k[pygame.K_d] or mx > 980:
             if self.Stx < 90:
                 self.Stx+=1
             else:
@@ -238,7 +238,7 @@ class loadmap():
                 self.Stx -=1
             else:
                 pass
-        if k[pygame.K_s] or my > 480:
+        if k[pygame.K_s] or screeny-my < 25:
             if self.Sty < 90:
                 self.Sty+=1
             else:
@@ -248,7 +248,7 @@ class loadmap():
                 self.Sty -=1
             else:
                 pass
-        pygame.time.delay(50)
+        pygame.time.delay(25)
         
         pass
     def DrawTile(self):
@@ -257,14 +257,14 @@ class loadmap():
                 g = self.tileListY[x+int(self.Sty)]
                 a = g[b+int(self.Stx)]
                 Nametile = a["TileName"]
-                Nametile.Draw(a["Surface"],(b*50),(x*50))
-                BoxCol = Rect((b*50),(x*50),50,50)
+                Nametile.Draw(a["Surface"],(b*a["TileName"].ScaleX),(x*a["TileName"].ScaleY))
+                BoxCol = Rect((b*a["TileName"].ScaleX),(x*a["TileName"].ScaleY),a["TileName"].ScaleX,a["TileName"].ScaleY)
                 
                 if BoxCol.collidepoint(pygame.mouse.get_pos()):
-                    au = slot((0,0,0),(0,0,0),40,40,3,(b*50+5),(x*50+5))
+                    au = slot((0,0,0),(0,0,0),a["TileName"].ScaleX-10,a["TileName"].ScaleY-10,3,(b*a["TileName"].ScaleX+5),(x*a["TileName"].ScaleY+5))
                     au.Draw(screen)
                     pass
-                if BoxCol.collidepoint(pygame.mouse.get_pos()) and pygame.mouse.get_pressed()[0] and self.ClickTile == False:
+                if BoxCol.collidepoint(pygame.mouse.get_pos()) and pygame.mouse.get_pressed() and self.ClickTile == False:
                     self.TouchPos["tile"]=a["Name"]
                     self.TouchPos["BlockX"]= a["BlockPosX"]
                     self.TouchPos["BlockY"]= a["BlockPosY"]
@@ -272,9 +272,18 @@ class loadmap():
                     self.TouchPos["PosY"]=x*50
                     self.ClickTile = True
                     print(self.TouchPos)
-                    ct = ImportTile.water
-                    a["TileName"]= ct
-                    a["Name"]=ct.Name
+                    if pygame.mouse.get_pressed()[0]:
+                        ct = ImportTile.water
+                        a["TileName"]= ct
+                        a["Name"]=ct.Name
+                    if pygame.mouse.get_pressed()[2]:
+                        ct = ImportTile.sand
+                        a["TileName"]= ct
+                        a["Name"]=ct.Name
+                    if pygame.mouse.get_pressed()[1]:
+                        ct = ImportTile.grass
+                        a["TileName"]= ct
+                        a["Name"]=ct.Name
                 if not pygame.mouse.get_pressed()[0]:
                     self.ClickTile = False
         pygame.display.flip()
