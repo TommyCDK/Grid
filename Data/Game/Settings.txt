@@ -1,0 +1,7 @@
+GameWidth=500
+GameHeight=700
+GameFill=Aqua
+
+
+
+
