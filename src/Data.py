@@ -32,6 +32,24 @@ GameWidth = int(ReadGameSetting['GameWidth'])
 GameHeight = int(ReadGameSetting['GameHeight'])
 GameFill = str(ReadGameSetting['GameFill'])
 
+screenx = GameWidth
+screeny = GameHeight
+screen = pygame.display.set_mode((screenx,screeny))
+MouseClicked = False
+MouseDrag = False
+MouseDragRect= pygame.Rect(0,0,0,0)
+#PropBool
+
+
+Sc1ForViler= False
+
+
+
+def OnOff():
+  pass
+
+
+
 
 
 

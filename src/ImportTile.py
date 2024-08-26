@@ -2,55 +2,72 @@
 
 import pygame
 import os
+import Data
 #Import Images And Create Rect
-
+screenx = Data.GameWidth
+screeny = Data.GameHeight
+Screen = pygame.display.set_mode((screenx,screeny))
 class ImportImages():
-    def __init__(self, ID, Path, ScaleX, ScaleY):
+    def __init__(self, ID, Path, ScaleX, ScaleY,PosX=0,PosY=0,Surface=0):
         self.ID = str(ID)
         self.Path = Path
         self.ScaleX = ScaleX
         self.ScaleY = ScaleY
-        
-    def Install(self):
+        self.Surface = Surface
+        self.PosX = PosX
+        self.PosY = PosY
+        self.AnimList = []
         self.Name = self.ID
         self.ID = pygame.image.load(self.Path)
         self.ID = pygame.transform.smoothscale(self.ID,(self.ScaleX, self.ScaleY))
-    
+   
     def Draw(self, Surface, PosX, PosY):
         self.PosX = PosX
         self.PosY = PosY
         self.Surface = Surface
         Surface.blit(self.ID, (self.PosX, self.PosY))
+    def DrawScale(self, Surface, PosX, PosY,ScaleXA,ScaleYA):
+        self.ID = pygame.image.load(self.Path)
+        self.ID = pygame.transform.smoothscale(self.ID,(ScaleXA,ScaleYA))
+        self.PosX = PosX
+        self.PosY = PosY
+        self.Surface = Surface
+        Surface.blit(self.ID, (self.PosX, self.PosY))
+    def CreateAnimation(self,Patha):
+        self.Patha = Patha
+        aac = pygame.image.load(self.Patha)
+        self.AnimList.append(self.Patha)
+    def RunAnim(self,Surface,X,Y):
+        for a in self.AnimList:
+            aac = pygame.image.load(a)
+            Surface.blit(aac,(X,Y))
+            pygame.time.delay(25)
+    def GoAnim(self,Number,Surface):
+        aac = pygame.image.load(self.AnimList[Number])
+        Surface.blit(aac,(self.PosX,self.PosY))
 
-dirt = ImportImages("dirt","Data\\Tiles\\Tiles\\Dirt.png",100,70)
-dirt.Install()
+dirt = ImportImages("dirt","Data\\Tiles\\Tiles\\Dirt.png",70,70)
 
-grass = ImportImages("grass","Data\\Tiles\\Tiles\\Grass.png",100,70)
-grass.Install()
 
-sand = ImportImages("sand","Data\\Tiles\\Tiles\\Sand.png",100,70)
-sand.Install()
-
-water = ImportImages("water","Data\\Tiles\\Tiles\\Water.png",100,70)
-water.Install()
-
+grass = ImportImages("grass","Data\\Tiles\\Tiles\\Grass.png",70,70)
+sand = ImportImages("sand","Data\\Tiles\\Tiles\\Sand.png",70,70)
+water = ImportImages("water","Data\\Tiles\\Tiles\\Water.png",70,70)
 dirtmini = ImportImages("dirt","Data\\Tiles\\Tiles\\Dirt.png",1,1)
-dirtmini.Install()
-
 grassmini = ImportImages("grass","Data\\Tiles\\Tiles\\Grass.png",1,1)
-grassmini.Install()
-
 sandmini = ImportImages("sand","Data\\Tiles\\Tiles\\Sand.png",1,1)
-sandmini.Install()
-
 watermini = ImportImages("water","Data\\Tiles\\Tiles\\Water.png",1,1)
-watermini.Install()
 
+BackGround = ImportImages("Br","Data\\Tiles\\Tiles\\BackGround.png",1000,700)
 ExitIMG = ImportImages("ExitIMG", "Data\\Tiles\\BlockObj\\Exit.png",150,50)
-ExitIMG.Install()
-
 StartIMG = ImportImages("StartIMG", "Data\\Tiles\\BlockObj\\Start.png",150,50)
-StartIMG.Install()
-
 MenuIMG = ImportImages("MenuIMG", "Data\\Tiles\\BlockObj\\Menu.png",150,50)
-MenuIMG.Install()
+HouseSl = ImportImages("HouseSl", "Data\\Tiles\\BlockObj\\HouseB.png",50,50)
+House = ImportImages("House","Data\\Tiles\\Tiles\\House.png",50,50)
+
+
+
+
+
+Player = ImportImages("MenuIMG", "Data\\Tiles\\Tiles\\PlayerF.png",150,50,100,100,Screen)
+Player.CreateAnimation("Data\\Tiles\\Tiles\\PlayerR.png")
+Player.CreateAnimation("Data\\Tiles\\Tiles\\PlayerL.png")
